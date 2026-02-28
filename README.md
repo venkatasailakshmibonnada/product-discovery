@@ -52,7 +52,7 @@ GROQ\_API\_KEY=your\_groq\_api\_key\_here
 
 Start the backend:
 
-node server.js
+node server.js  or  npm run dev
 
 
 
