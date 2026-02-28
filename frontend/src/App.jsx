@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import ProductList from './components/ProductList';
 import AskBox from './components/AskBox';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 export default function App() {
   const [allProducts, setAllProducts] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -13,7 +15,7 @@ export default function App() {
   const [fetchError, setFetchError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/products')
+    fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setAllProducts(data.products);
@@ -58,7 +60,7 @@ export default function App() {
       <main style={styles.main}>
         {fetchError && <div style={styles.errorBanner}>{fetchError}</div>}
 
-        <AskBox onResult={handleAiResult} onLoading={setLoading} />
+        <AskBox onResult={handleAiResult} onLoading={setLoading} apiUrl={API_URL} />
 
         {aiSummary && (
           <div style={styles.summaryBox}>
